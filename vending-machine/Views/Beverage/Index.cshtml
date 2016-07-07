@@ -1,0 +1,28 @@
+﻿@model IEnumerable<vending_machine.Models.Beverage>
+
+@{
+    ViewBag.Title = "Index";    
+}
+
+<h2>Recipe</h2>
+
+<table class="table">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Order</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>@item.ID</td>
+        <td>@item.Name</td>
+        <td>@item.Price</td>
+        <td>
+            @Html.ActionLink("Order", "Order", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

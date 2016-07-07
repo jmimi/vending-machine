@@ -1,0 +1,81 @@
+﻿@model vending_machine.Models.Beverage
+
+@{
+    ViewBag.Title = "Oerder";
+}
+
+<script type="text/javascript">
+    $(function () {
+        var random = Math.floor(Math.random() * 1000);
+        $("#comm_id").val(random);
+        $("#result").text("");                                        
+        startProcess();      
+        setupSignal();    
+    });
+
+    function startProcess() {
+        $("#start_process").click(function (e) {
+            e.preventDefault();  
+            $('#start_process').addClass('disabled');
+            $.ajax({
+                url: '@Url.Action("StartProcess", "Beverage")',
+                data: { id: @Model.ID, random: $("#comm_id").val() },
+                method: "POST",
+                success: function () {                 
+                    $('#start_process').removeClass('disabled');                    
+                }
+
+            });
+
+        });
+    }
+
+    function setupSignal() {
+        var connection = $.hubConnection();        
+        var commChannel = connection.createHubProxy("beverage");
+        commChannel.on('sendProcesingPhase', function (phase, status) {
+            var type = "text-primary";
+            if(status === 'Finished'){
+                type = "text-warning";
+            }
+            $("#result").append("<p class='" + type + "'>" + phase + " " + status + "</p>");
+        });
+
+        connection.qs = { 'ID' : $("#comm_id").val() };
+        connection.start().done(function () {
+
+        }).fail(function (error) {
+            console.error(error);
+        });
+    }
+</script>
+
+<h2>Oerder</h2>
+
+<div>
+    <h4>Beverage : @Model.Name</h4>
+    <dl class="dl-horizontal">
+        <table class="table">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Price</th>
+            </tr>
+            <tr>
+                <td>@Model.ID</td>
+                <td>@Model.Name</td>
+                <td>@Model.Price</td>
+            </tr>
+        </table>
+    </dl>
+</div>
+<div id="result" class="result">
+
+</div>
+<p>
+    <a id="start_process" href="#" class="btn btn-primary">Start</a>
+    <input type="hidden"  id="comm_id" value="0" />
+</p>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>
