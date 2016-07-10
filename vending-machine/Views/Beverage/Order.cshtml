@@ -8,7 +8,8 @@
     $(function () {
         var random = Math.floor(Math.random() * 1000);
         $("#comm_id").val(random);
-        $("#result").text("");                                        
+        $("#result").text("");                               
+        $('#start_process').addClass('disabled');
         startProcess();      
         setupSignal();    
     });
@@ -43,7 +44,8 @@
 
         connection.qs = { 'ID' : $("#comm_id").val() };
         connection.start().done(function () {
-
+            $('#start_process').removeClass('disabled');                    
+            $('#ready_state').text("Ready!");
         }).fail(function (error) {
             console.error(error);
         });
@@ -74,6 +76,7 @@
 </div>
 <p>
     <a id="start_process" href="#" class="btn btn-primary">Start</a>
+    <p id="ready_state"></p>
     <input type="hidden"  id="comm_id" value="0" />
 </p>
 <p>

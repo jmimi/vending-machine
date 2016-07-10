@@ -1,0 +1,9 @@
+C:\work\puya-fartaak\vending-machine\vending-machine.test\bin\Debug\vending-machine.test.dll
+C:\work\puya-fartaak\vending-machine\vending-machine.test\bin\Debug\vending-machine.test.pdb
+C:\work\puya-fartaak\vending-machine\vending-machine.test\bin\Debug\WebDriver.dll
+C:\work\puya-fartaak\vending-machine\vending-machine.test\bin\Debug\WebDriver.Support.dll
+C:\work\puya-fartaak\vending-machine\vending-machine.test\bin\Debug\WebDriver.xml
+C:\work\puya-fartaak\vending-machine\vending-machine.test\bin\Debug\WebDriver.Support.xml
+C:\work\puya-fartaak\vending-machine\vending-machine.test\obj\Debug\vending-machine.test.csprojResolveAssemblyReference.cache
+C:\work\puya-fartaak\vending-machine\vending-machine.test\obj\Debug\vending-machine.test.dll
+C:\work\puya-fartaak\vending-machine\vending-machine.test\obj\Debug\vending-machine.test.pdb
